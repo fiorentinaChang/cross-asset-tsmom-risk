@@ -417,37 +417,36 @@ These weaknesses are not hidden from the analysis. They are part of the risk int
 
 ## 7. Repository Structure
 
-```text
 cross-asset-tsmom-risk/
 │
 ├── README.md
-├── requirements.txt
-│
-├── notebooks/
-│   └── cross_asset_tsmom_research.ipynb
+├── LICENSE
+├── .gitignore
+├── cross-asset-tsmom-risk.ipynb
 │
 ├── figures/
-│   ├── benchmark_nav.png
-│   ├── drawdown_comparison.png
-│   ├── crisis_returns.png
-│   ├── parameter_stability_oos_sharpe.png
-│   ├── cost_sensitivity.png
-│   ├── asset_weights.png
-│   ├── cap_utilisation.png
-│   ├── target_vol_sensitivity.png
-│   └── target_asset_vol_sensitivity.png
+│   ├── 1-yr-sharpe-ratio.png
+│   ├── NAV-comparison.png
+│   ├── OOS-sharpe-8.png
+│   ├── TSMOM-vs-benchmark.png
+│   ├── cap-hit-rate-by-asset.png
+│   ├── cumulative-NAV.png
+│   ├── net-return-during-crisis.png
+│   ├── portfolio-weights-by-asset.png
+│   ├── sharpe-vs-transaction-cost.png
+│   ├── strategy-drawdown.png
+│   ├── target-asset-volatility-sensitivity.png
+│   ├── volatility-sensitivity.png
+│   ├── yearly-return.png
+│   └── yearly-sharpe-ratio.png
 │
-├── tables/
-│   ├── full_summary.csv
-│   ├── in_sample_vs_oos.csv
-│   ├── benchmark_comparison.csv
-│   ├── crisis_attribution.csv
-│   ├── parameter_stability.csv
-│   └── cost_sensitivity.csv
-│
-└── reports/
-    └── results.csv
-```
+└── tables/
+    ├── full_summary.csv
+    ├── in_sample_vs_oos.csv
+    ├── benchmark_comparison.csv
+    ├── crisis_attribution.csv
+    ├── parameter_stability.csv
+    └── cost_sensitivity.csv
 
 ### Output Tables
 
