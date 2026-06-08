@@ -420,7 +420,6 @@ The main observed failure modes are:
 These weaknesses are not hidden from the analysis. They are part of the risk interpretation of the model.
 
 ---
-
 ## 8. Repository Structure
 
 ```text
@@ -463,8 +462,8 @@ cross-asset-tsmom-risk/
     └── reports/
         ├── final_weights.csv
         └── results.csv
+```
 
-```markdown
 ### Output Tables
 
 The project saves the main summary tables in `tables/tables/`:
@@ -484,6 +483,8 @@ The project saves larger run-level outputs in `tables/reports/`:
 * `results.csv`
 * `final_weights.csv`
 
+These files are included so that the headline README figures and tables can be checked against the underlying numerical outputs.
+
 ---
 
 ## 9. How to Reproduce
@@ -493,7 +494,6 @@ The project saves larger run-level outputs in `tables/reports/`:
 ```bash
 git clone https://github.com/fiorentinaChang/cross-asset-tsmom-risk.git
 cd cross-asset-tsmom-risk
-
 ```
 
 ### 9.2 Install Dependencies
@@ -517,7 +517,7 @@ ipykernel
 
 ### 9.3 Run the Notebook
 
-Open and run the notebook:
+Open and run:
 
 ```text
 cross-asset-tsmom-risk.ipynb
