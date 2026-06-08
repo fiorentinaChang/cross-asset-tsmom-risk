@@ -1,5 +1,3 @@
-<img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/7dbff2cb-3f9e-4023-9ae4-0df9083d333f" /># Cross-Asset Momentum Risk Framework
-
 Market-risk and model-validation case study using a multi-asset time-series momentum strategy.
 
 ## 1. Executive Summary
@@ -192,15 +190,13 @@ The Eurozone crisis result is roughly flat at **-0.24%**, while the banking stre
 
 Overall, the crisis results support a balanced interpretation: the strategy can provide useful diversification in some sustained stress regimes, but it can fail when the market shock is abrupt, discontinuous, and faster than the signal can adapt.
 
-
 ## 4. Main Figures
 
-The figures in this repository are intended to support the main risk and validation arguments. Figures are saved in the `figures/` folder.
+The figures in this repository support the main risk and validation arguments. To keep the README concise for interviewers, the main section focuses on five headline figures: benchmark NAV, drawdown, crisis returns, parameter stability, and transaction-cost sensitivity. Additional diagnostics are listed separately and saved in the `figures/` folder.
 
 ### 4.1 NAV Comparison vs Benchmarks
 
-**Figure:** `<img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/a459ef0e-3d77-410a-8dc9-b2406a5ea196" />
-`
+![NAV comparison vs benchmarks](figures/TSMOM-vs-benchmark.png)
 
 The NAV comparison shows the strategy against buy-and-hold SPY and a monthly rebalanced 60/40 SPY/IEF benchmark.
 
@@ -210,23 +206,21 @@ The value of the framework is more visible in drawdown behaviour, crisis attribu
 
 ### 4.2 Drawdown Comparison vs Benchmarks
 
-**Figure:** `<img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/fe18431a-42e7-4593-addf-3c876c4f1e54" />
-`
+![Strategy drawdown](figures/strategy-drawdown.png)
 
 The drawdown comparison is the most important figure for a risk-oriented audience.
 
 The final TSMOM model has a maximum drawdown of **-22.76%**, compared with **-31.39%** for monthly 60/40 and **-55.19%** for buy-and-hold SPY.
 
-This supports the main risk argument: the strategy does not dominate on Sharpe, but it offers a more controlled drawdown profile.
+This supports the main risk argument: the strategy does not dominate on Sharpe, but it offers a more controlled realised drawdown profile.
 
 ### 4.3 Crisis-Window Returns
 
-**Figure:** `<img width="989" height="490" alt="image" src="https://github.com/user-attachments/assets/072ae1e8-373e-4641-a440-3b12ff2cf71b" />
-`
+![Net return during crisis windows](figures/net-return-during-crisis.png)
 
 Crisis attribution is deliberately presented as mixed rather than uniformly positive.
 
-The strategy performs positively during the global financial crisis, returning **4.30%** from September 2008 to March 2009. It also performs strongly during the 2022 inflation/rates shock, returning **13.30%**.
+The strategy performs positively during the global financial crisis, returning **4.30%**. It also performs strongly during the 2022 inflation/rates shock, returning **13.30%**.
 
 The weakest stress result is Covid. During the February–April 2020 Covid shock, the strategy loses **9.33%** and reaches a crisis-window drawdown of approximately **-21.73%**.
 
@@ -236,8 +230,7 @@ This is a clear failure case and demonstrates the lag risk of medium-term trend-
 
 ### 4.4 Parameter Stability: Out-of-Sample Sharpe
 
-**Figure:** `<img width="444" height="254" alt="image" src="https://github.com/user-attachments/assets/aac815d4-89e6-4724-93b7-a1cee6a5951a" />
-`
+![Out-of-sample Sharpe parameter stability](figures/OOS-sharpe-8.png)
 
 The parameter-stability heatmap supports the final multi-horizon specification.
 
@@ -247,8 +240,7 @@ Nearby volatility windows also perform reasonably, which reduces concern that th
 
 ### 4.5 Transaction-Cost Sensitivity
 
-**Figure:** `<img width="459" height="285" alt="image" src="https://github.com/user-attachments/assets/7561f15e-8ee9-42ba-b235-87441770422b" />
-`
+![Sharpe versus transaction cost](figures/sharpe-vs-transaction-cost.png)
 
 The cost-sensitivity figure tests whether the result depends on unrealistically low trading costs.
 
@@ -258,6 +250,21 @@ This is a useful implementation-risk result. The strategy is affected by costs, 
 
 However, the cost model remains simplified and does not include market impact, financing, ETF tracking error, futures roll costs, borrow costs, or capacity constraints.
 
+### 4.6 Additional Diagnostic Figures
+
+The following figures are included in the repository as supporting diagnostics. They are useful for deeper review, but they are not treated as headline README figures.
+
+| Figure                              | File                                              | Purpose                                                                                          |
+| ----------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Cumulative NAV                      | `figures/cumulative-NAV.png`                      | Shows the standalone cumulative NAV path of the strategy.                                        |
+| NAV comparison                      | `figures/NAV-comparison.png`                      | Provides an additional NAV comparison view.                                                      |
+| One-year rolling Sharpe             | `figures/1-yr-sharpe-ratio.png`                   | Shows time variation in short-horizon risk-adjusted performance.                                 |
+| Yearly returns                      | `figures/yearly-return.png`                       | Highlights strong and weak calendar-year regimes.                                                |
+| Yearly Sharpe ratio                 | `figures/yearly-sharpe-ratio.png`                 | Shows yearly variation in risk-adjusted returns.                                                 |
+| Portfolio weights by asset          | `figures/portfolio-weights-by-asset.png`          | Shows how asset exposures evolve over time. Useful, but visually dense for the main README.      |
+| Cap hit rate by asset               | `figures/cap-hit-rate-by-asset.png`               | Shows how often position caps bind and how constraints shape realised exposures.                 |
+| Portfolio volatility sensitivity    | `figures/volatility-sensitivity.png`              | Tests whether the selected 12% portfolio volatility target is a single-parameter artefact.       |
+| Target asset volatility sensitivity | `figures/target-asset-volatility-sensitivity.png` | Tests whether the selected 6% target asset volatility assumption is a single-parameter artefact. |
 
 
 ## 5. Methodology
@@ -591,11 +598,14 @@ The framework includes gross leverage controls but does not include:
 
 This means the strategy should not be interpreted as a deployable leveraged portfolio without further implementation work.
 
-### 9.9 No Formal VaR or Expected Shortfall Module
+### 9.9 Limited VaR and Expected Shortfall Analysis
 
-The current project focuses on volatility, drawdown, crisis windows, stress returns, and sensitivity analysis.
+The current project includes Daily 99% VaR and Daily 99% Expected Shortfall in the headline results and benchmark comparison.
 
-It does not yet include a formal VaR or Expected Shortfall module. This is a natural extension for a bank-style market-risk framework.
+However, the VaR and ES analysis remains limited. A production-grade market-risk framework would require rolling VaR, stressed VaR, VaR backtesting exceptions, scenario-based losses, risk-factor decomposition, and risk contribution by asset and asset class.
+
+This is a natural extension for a more complete bank-style market-risk framework.
+
 
 ### 9.10 Data Source Risk
 
