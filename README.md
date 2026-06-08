@@ -1,4 +1,5 @@
 # Cross-Asset Momentum Risk Framework
+
 Market-risk and model-validation case study using a multi-asset time-series momentum strategy.
 
 ## 1. Executive Summary
@@ -20,6 +21,10 @@ The main risk-management value of the project is its transparent treatment of dr
 ## 2. Why This Matters for Risk Management
 
 Although the test object is a systematic investment strategy, the project is framed as a risk-management exercise. The focus is not only on return generation, but on understanding how model assumptions, portfolio constraints, market regimes, and implementation costs affect realised risk.
+
+---
+
+## 3. Key Relevance to Risk
 
 ### Market Risk
 
@@ -76,11 +81,11 @@ The stress-testing section is intended to show not only when the model works, bu
 
 ---
 
-## 3. Key Results
+## 4. Key Results
 
 The tables below summarise the final strategy configuration, asset universe, headline performance, in-sample versus out-of-sample validation, benchmark comparison, and crisis-window behaviour.
 
-### 3.1 Final Model Configuration
+### 4.1 Final Model Configuration
 
 | Component                   | Implementation                                                         |
 | --------------------------- | ---------------------------------------------------------------------- |
@@ -100,7 +105,7 @@ The tables below summarise the final strategy configuration, asset universe, hea
 | Validation                  | In-sample/out-of-sample split, parameter stability, crisis attribution |
 | Benchmarks                  | Buy-and-hold SPY and monthly 60/40 SPY/IEF                             |
 
-### 3.2 Asset Universe
+### 4.2 Asset Universe
 
 | Asset Class | Instruments             |
 | ----------- | ----------------------- |
@@ -109,7 +114,7 @@ The tables below summarise the final strategy configuration, asset universe, hea
 | FX          | UUP, FXE, FXY           |
 | Commodity   | GLD, DBC                |
 
-### 3.3 Final TSMOM Performance Summary
+### 4.3 Final TSMOM Performance Summary
 
 | Metric                         | Final TSMOM |
 | ------------------------------ | ----------: |
@@ -131,7 +136,7 @@ The final strategy produces positive full-sample performance with controlled vol
 
 The inclusion of Daily 99% VaR and Daily 99% Expected Shortfall makes the project more directly relevant to market-risk analysis. The final model has a Daily 99% VaR of **2.10%** and a Daily 99% Expected Shortfall of **3.02%**.
 
-### 3.4 In-Sample vs Out-of-Sample Performance
+### 4.4 In-Sample vs Out-of-Sample Performance
 
 | Metric                 | In-Sample | Out-of-Sample |
 | ---------------------- | --------: | ------------: |
@@ -149,7 +154,7 @@ This is encouraging, but it should not be over-interpreted. The post-2017 out-of
 
 The out-of-sample period also has higher volatility, higher turnover, higher average gross leverage, and a larger maximum drawdown. This is important because the stronger OOS return is achieved with greater realised risk and more active trading.
 
-### 3.5 Benchmark Comparison
+### 4.5 Benchmark Comparison
 
 | Metric            | Buy-and-Hold SPY | Monthly 60/40 SPY/IEF |   TSMOM |
 | ----------------- | ---------------: | --------------------: | ------: |
@@ -171,7 +176,7 @@ The Daily 99% VaR and Expected Shortfall are close to the 60/40 benchmark. TSMOM
 
 The correct interpretation is that TSMOM does not dominate 60/40. Its value lies in lower realised drawdown, selected crisis-period resilience, transparent portfolio constraints, and implementation-aware diagnostics.
 
-### 3.6 Crisis-Window Performance
+### 4.6 Crisis-Window Performance
 
 | Crisis Window           | Net Return | Interpretation                  |
 | ----------------------- | ---------: | ------------------------------- |
@@ -191,11 +196,11 @@ The Eurozone crisis result is roughly flat at **-0.24%**, while the banking stre
 
 Overall, the crisis results support a balanced interpretation: the strategy can provide useful diversification in some sustained stress regimes, but it can fail when the market shock is abrupt, discontinuous, and faster than the signal can adapt.
 
-## 4. Main Figures
+## 5. Main Figures
 
 The figures in this repository support the main risk and validation arguments. To keep the README concise for interviewers, the main section focuses on five headline figures: benchmark NAV, drawdown, crisis returns, parameter stability, and transaction-cost sensitivity. Additional diagnostics are listed separately and saved in the `figures/` folder.
 
-### 4.1 NAV Comparison vs Benchmarks
+### 5.1 NAV Comparison vs Benchmarks
 
 ![NAV comparison vs benchmarks](figures/TSMOM-vs-benchmark.png)
 
@@ -205,7 +210,7 @@ SPY and 60/40 compound to higher terminal values, while the TSMOM strategy compo
 
 The value of the framework is more visible in drawdown behaviour, crisis attribution, risk controls, and transparent implementation diagnostics.
 
-### 4.2 Drawdown Comparison vs Benchmarks
+### 5.2 Drawdown Comparison vs Benchmarks
 
 ![Strategy drawdown](figures/strategy-drawdown.png)
 
@@ -215,7 +220,7 @@ The final TSMOM model has a maximum drawdown of **-22.76%**, compared with **-31
 
 This supports the main risk argument: the strategy does not dominate on Sharpe, but it offers a more controlled realised drawdown profile.
 
-### 4.3 Crisis-Window Returns
+### 5.3 Crisis-Window Returns
 
 ![Net return during crisis windows](figures/net-return-during-crisis.png)
 
@@ -229,7 +234,7 @@ Asset-level attribution shows that the model remained exposed to equities throug
 
 This is a clear failure case and demonstrates the lag risk of medium-term trend-following signals during abrupt market crashes.
 
-### 4.4 Parameter Stability: Out-of-Sample Sharpe
+### 5.4 Parameter Stability: Out-of-Sample Sharpe
 
 ![Out-of-sample Sharpe parameter stability](figures/OOS-sharpe-8.png)
 
@@ -239,7 +244,7 @@ The combined 63/126/252-day signal performs better than most single-horizon vari
 
 Nearby volatility windows also perform reasonably, which reduces concern that the result depends on one exact parameter. Single-horizon 63-day signals perform materially worse out of sample, supporting the use of a multi-horizon ensemble rather than a single arbitrary lookback.
 
-### 4.5 Transaction-Cost Sensitivity
+### 5.5 Transaction-Cost Sensitivity
 
 ![Sharpe versus transaction cost](figures/sharpe-vs-transaction-cost.png)
 
@@ -251,7 +256,7 @@ This is a useful implementation-risk result. The strategy is affected by costs, 
 
 However, the cost model remains simplified and does not include market impact, financing, ETF tracking error, futures roll costs, borrow costs, or capacity constraints.
 
-### 4.6 Additional Diagnostic Figures
+### 5.6 Additional Diagnostic Figures
 
 The following figures are included in the repository as supporting diagnostics. They are useful for deeper review, but they are not treated as headline README figures.
 
@@ -268,13 +273,13 @@ The following figures are included in the repository as supporting diagnostics. 
 | Target asset volatility sensitivity | `figures/target-asset-volatility-sensitivity.png` | Tests whether the selected 6% target asset volatility assumption is a single-parameter artefact. |
 
 
-## 5. Methodology
+## 6. Methodology
 
 The strategy is based on time-series momentum: assets with positive medium-term trends are held long, while assets with negative medium-term trends are held short.
 
 The project uses liquid ETF proxies rather than continuous futures contracts. This improves reproducibility for a public GitHub project, but it limits direct comparability with academic futures-based time-series momentum studies.
 
-### 5.1 Data
+### 6.1 Data
 
 The final universe contains 13 liquid ETF proxies across equities, rates, FX, and commodities.
 
@@ -282,7 +287,7 @@ The backtest starts on **2007-03-01** and ends on **2026-06-05**. Prices are dow
 
 The use of ETF proxies is a deliberate design choice for public reproducibility. However, it introduces limitations around ETF tracking error, expense ratios, shorting assumptions, financing, and comparability with futures-based trend-following research.
 
-### 5.2 Signal Construction
+### 6.2 Signal Construction
 
 Instead of using a simple binary trend signal, the model uses a continuous multi-horizon signal.
 
@@ -297,7 +302,7 @@ For each asset:
 
 The multi-horizon design is intended to reduce dependence on a single arbitrary lookback window.
 
-### 5.3 Portfolio Construction
+### 6.3 Portfolio Construction
 
 Portfolio construction uses ex-ante volatility scaling.
 
@@ -313,7 +318,7 @@ Asset weights are proportional to signal strength and inversely proportional to 
 
 The portfolio is therefore shaped by both signal strength and risk constraints.
 
-### 5.4 Transaction Costs
+### 6.4 Transaction Costs
 
 Transaction costs are applied to traded notional using asset-specific basis-point assumptions.
 
@@ -336,7 +341,7 @@ The cost model remains simplified. It does not include:
 * Borrow costs.
 * Capacity constraints.
 
-### 5.5 Validation
+### 6.5 Validation
 
 The validation framework includes:
 
@@ -356,7 +361,7 @@ Out-of-sample performance is stronger than in-sample performance. This is encour
 
 The post-2017 period contains several favourable macro trend regimes, including 2020–2022 and 2024–2026. The result supports robustness, but it does not prove permanent alpha.
 
-### 5.6 Benchmark Comparison
+### 6.6 Benchmark Comparison
 
 The strategy is compared against:
 
@@ -367,23 +372,23 @@ The model does not beat monthly 60/40 on Sharpe. Its value is instead lower draw
 
 ---
 
-## 6. Stress Testing and Failure Cases
+## 7. Stress Testing and Failure Cases
 
 The strategy performs well in some stress regimes but not all. This section is intentionally included because a risk-management project should explain model weaknesses rather than only highlight favourable periods.
 
-### 6.1 Global Financial Crisis
+### 7.1 Global Financial Crisis
 
 During the global financial crisis window from September 2008 to March 2009, the strategy returns **4.30%**.
 
 This is a favourable result and is consistent with the idea that medium-term trend-following strategies can perform well during sustained directional market moves.
 
-### 6.2 2022 Inflation/Rates Shock
+### 7.2 2022 Inflation/Rates Shock
 
 During the 2022 inflation/rates shock, the strategy returns **13.30%**.
 
 This was a favourable macro trend regime for the model. The result supports the idea that cross-asset trend-following can benefit from persistent macro dislocations.
 
-### 6.3 Covid Shock
+### 7.3 Covid Shock
 
 Covid is the clearest weakness of the model.
 
@@ -393,7 +398,7 @@ The model remained exposed to equities through IWM, EFA, SPY, EEM, and QQQ. Defe
 
 This reflects a known limitation of medium-term trend following: signals can react too slowly when the regime shift is abrupt and discontinuous.
 
-### 6.4 Whipsaw Years
+### 7.4 Whipsaw Years
 
 The strategy also struggles in whipsaw years.
 
@@ -401,7 +406,7 @@ Yearly diagnostics show weak performance in **2012**, **2016**, and **2023**. Th
 
 This is an important model-risk issue because trend-following strategies can be vulnerable when markets reverse frequently and do not establish persistent trends.
 
-### 6.5 Main Failure Modes
+### 7.5 Main Failure Modes
 
 The main observed failure modes are:
 
@@ -416,7 +421,7 @@ These weaknesses are not hidden from the analysis. They are part of the risk int
 
 ---
 
-## 7. Repository Structure
+## 8. Repository Structure
 
 ```text
 cross-asset-tsmom-risk/
@@ -458,8 +463,8 @@ cross-asset-tsmom-risk/
     └── reports/
         ├── final_weights.csv
         └── results.csv
-```
 
+```markdown
 ### Output Tables
 
 The project saves the main summary tables in `tables/tables/`:
@@ -479,20 +484,19 @@ The project saves larger run-level outputs in `tables/reports/`:
 * `results.csv`
 * `final_weights.csv`
 
-These files are included so that the headline README figures and tables can be checked against the underlying numerical outputs.
-
 ---
 
-## 8. How to Reproduce
+## 9. How to Reproduce
 
-### 8.1 Clone the Repository
+### 9.1 Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/fiorentinaChang/cross-asset-tsmom-risk.git
 cd cross-asset-tsmom-risk
+
 ```
 
-### 8.2 Install Dependencies
+### 9.2 Install Dependencies
 
 Install the required Python packages from the root of the repository:
 
@@ -511,7 +515,7 @@ jupyter
 ipykernel
 ```
 
-### 8.3 Run the Notebook
+### 9.3 Run the Notebook
 
 Open and run the notebook:
 
@@ -533,7 +537,7 @@ The notebook will:
 10. Save summary tables to `tables/tables/`.
 11. Save run-level outputs, including daily results and final weights, to `tables/reports/`.
 
-### 8.4 Data Source Note
+### 9.4 Data Source Note
 
 The project uses `yfinance` for reproducibility and ease of access. Results may vary slightly if historical data are revised, adjusted, or unavailable at the time of download.
 
@@ -542,11 +546,11 @@ This project is for research and educational purposes only. It is not investment
 
 ---
 
-## 9. Limitations
+## 10. Limitations
 
 This section summarises the main modelling, implementation, and data limitations.
 
-### 9.1 ETF Proxies, Not Futures
+### 10.1 ETF Proxies, Not Futures
 
 The strategy uses liquid ETF proxies rather than continuous futures contracts.
 
@@ -554,7 +558,7 @@ This improves reproducibility for a public GitHub project, but it limits compara
 
 A production-grade trend-following implementation would usually require a broader futures universe, proper contract rolling logic, margin treatment, and futures-specific transaction-cost modelling.
 
-### 9.2 Limited Universe Size
+### 10.2 Limited Universe Size
 
 The final universe contains 13 instruments.
 
@@ -562,13 +566,13 @@ This is broader than the initial eight-asset version, but still smaller than a p
 
 A limited universe increases concentration risk and may make results more dependent on a small number of instruments.
 
-### 9.3 60/40 Has a Higher Sharpe
+### 10.3 60/40 Has a Higher Sharpe
 
 The strategy underperforms monthly 60/40 on Sharpe.
 
 Its value is therefore not superior risk-adjusted return versus a balanced benchmark. The stronger argument is lower drawdown, selected crisis-period performance, explicit risk controls, and implementation-aware diagnostics.
 
-### 9.4 Covid Failure Case
+### 10.4 Covid Failure Case
 
 The model remained long several equity exposures during the rapid Covid sell-off.
 
@@ -576,7 +580,7 @@ This shows the lag risk of medium-term trend-following signals during abrupt reg
 
 The Covid result is an important reminder that trend-following can fail when market crashes occur faster than the signal can respond.
 
-### 9.5 Simplified Transaction Costs
+### 10.5 Simplified Transaction Costs
 
 Costs are modelled as linear basis-point costs.
 
@@ -592,7 +596,7 @@ A production version would require a more detailed implementation model, includi
 * Shorting constraints.
 * Capacity analysis.
 
-### 9.6 Shorting Assumptions
+### 10.6 Shorting Assumptions
 
 The strategy can hold short positions based on negative trend signals.
 
@@ -600,13 +604,13 @@ In practice, short ETF positions may involve borrow costs, locate availability, 
 
 This is a relevant limitation because short-side implementation can materially affect realised returns and risk.
 
-### 9.7 Close-to-Close Assumptions
+### 10.7 Close-to-Close Assumptions
 
 The strategy uses daily close prices and assumes implementable rebalancing at those levels.
 
 A production version would need more realistic execution timing, such as next-day open execution, volume participation limits, slippage assumptions, or intraday execution modelling.
 
-### 9.8 No Capital or Margin Model
+### 10.8 No Capital or Margin Model
 
 The framework includes gross leverage controls but does not include:
 
@@ -619,7 +623,7 @@ The framework includes gross leverage controls but does not include:
 
 This means the strategy should not be interpreted as a deployable leveraged portfolio without further implementation work.
 
-### 9.9 Limited VaR and Expected Shortfall Analysis
+### 10.9 Limited VaR and Expected Shortfall Analysis
 
 The current project includes Daily 99% VaR and Daily 99% Expected Shortfall in the headline results and benchmark comparison.
 
@@ -628,7 +632,7 @@ However, the VaR and ES analysis remains limited. A production-grade market-risk
 This is a natural extension for a more complete bank-style market-risk framework.
 
 
-### 9.10 Data Source Risk
+### 10.10 Data Source Risk
 
 The project relies on `yfinance` data. Public data sources can have missing values, revised histories, ticker changes, survivorship issues, or adjustment differences.
 
@@ -636,11 +640,11 @@ A production version would require validated market data, robust data-quality ch
 
 ---
 
-## 10. Future Improvements
+## 11. Future Improvements
 
 The current project demonstrates a full systematic research and risk-diagnostics pipeline. Future extensions could make it more directly aligned with bank-style market risk, model risk, and stress-testing workflows.
 
-### 10.1 VaR and Expected Shortfall
+### 11.1 VaR and Expected Shortfall
 
 Add formal market-risk measures:
 
@@ -654,7 +658,7 @@ Add formal market-risk measures:
 
 This would make the framework more directly relevant to market-risk roles.
 
-### 10.2 Scenario Shocks
+### 11.2 Scenario Shocks
 
 Add explicit scenario analysis, such as:
 
@@ -668,7 +672,7 @@ Add explicit scenario analysis, such as:
 
 This would improve the project’s stress-testing depth.
 
-### 10.3 Liquidity Stress Testing
+### 11.3 Liquidity Stress Testing
 
 Extend the implementation model to include:
 
@@ -681,7 +685,7 @@ Extend the implementation model to include:
 
 This would make the strategy more realistic under stressed market conditions.
 
-### 10.4 Margin and Financing Model
+### 11.4 Margin and Financing Model
 
 Add a capital and margin framework, including:
 
@@ -695,7 +699,7 @@ Add a capital and margin framework, including:
 
 This would improve the realism of the leverage and shorting assumptions.
 
-### 10.5 Model-Risk Dashboard
+### 11.5 Model-Risk Dashboard
 
 Build a dashboard or summary report showing:
 
@@ -712,7 +716,7 @@ Build a dashboard or summary report showing:
 
 This would make the project easier to present as a risk-monitoring framework.
 
-### 10.6 Credit or Market Risk Extension
+### 11.6 Credit or Market Risk Extension
 
 For broader bank-risk relevance, the framework could be extended with either:
 
@@ -729,6 +733,6 @@ This project demonstrates a complete risk-aware systematic research framework: s
 
 The strategy should not be interpreted as a production-ready trading system or as a superior replacement for 60/40. Its main value is as a transparent market-risk and model-validation case study.
 
-The strongest results are lower drawdown versus SPY and monthly 60/40, positive performance in selected stress regimes, and robustness under transaction-cost stress. The main weaknesses are Covid lag risk, simplified implementation assumptions, limited ETF universe size, and the absence of formal VaR, Expected Shortfall, liquidity stress, and margin modelling.
+The strongest results are lower drawdown versus SPY and monthly 60/40, positive performance in selected stress regimes, and robustness under transaction-cost stress. The main weaknesses are Covid lag risk, simplified implementation assumptions, limited ETF universe size, and the absence of a full production-style VaR/ES framework, including rolling VaR, stressed VaR, VaR backtesting, liquidity stress, and margin modelling.
 
 Overall, the project is intended to show how a systematic model can be researched critically: not only by asking whether it makes money, but by asking when it fails, how stable it is, how costly it is to implement, and what risks remain unmodelled.
