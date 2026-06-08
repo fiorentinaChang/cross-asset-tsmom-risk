@@ -418,11 +418,13 @@ These weaknesses are not hidden from the analysis. They are part of the risk int
 
 ## 7. Repository Structure
 
+```text
 cross-asset-tsmom-risk/
 │
 ├── README.md
 ├── LICENSE
 ├── .gitignore
+├── requirements.txt
 ├── cross-asset-tsmom-risk.ipynb
 │
 ├── figures/
@@ -442,16 +444,25 @@ cross-asset-tsmom-risk/
 │   └── yearly-sharpe-ratio.png
 │
 └── tables/
-    ├── full_summary.csv
-    ├── in_sample_vs_oos.csv
-    ├── benchmark_comparison.csv
-    ├── crisis_attribution.csv
-    ├── parameter_stability.csv
-    └── cost_sensitivity.csv
+    ├── tables/
+    │   ├── benchmark_comparison.csv
+    │   ├── cost_sensitivity.csv
+    │   ├── crisis_attribution.csv
+    │   ├── full_summary.csv
+    │   ├── in_sample_vs_oos.csv
+    │   ├── parameter_stability.csv
+    │   ├── target_asset_vol_sensitivity.csv
+    │   ├── target_vol_sensitivity.csv
+    │   └── yearly_performance.csv
+    │
+    └── reports/
+        ├── final_weights.csv
+        └── results.csv
+```
 
 ### Output Tables
 
-The project saves the main numerical results in the `tables/` folder:
+The project saves the main summary tables in `tables/tables/`:
 
 * `full_summary.csv`
 * `in_sample_vs_oos.csv`
@@ -459,12 +470,16 @@ The project saves the main numerical results in the `tables/` folder:
 * `crisis_attribution.csv`
 * `parameter_stability.csv`
 * `cost_sensitivity.csv`
+* `target_vol_sensitivity.csv`
+* `target_asset_vol_sensitivity.csv`
+* `yearly_performance.csv`
 
-The `reports/` folder contains:
+The project saves larger run-level outputs in `tables/reports/`:
 
 * `results.csv`
+* `final_weights.csv`
 
-These tables are included so that the headline figures in the README can be checked against the underlying outputs.
+These files are included so that the headline README figures and tables can be checked against the underlying numerical outputs.
 
 ---
 
@@ -479,45 +494,51 @@ cd cross-asset-tsmom-risk
 
 ### 8.2 Install Dependencies
 
+Install the required Python packages from the root of the repository:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-Required packages:
+The main packages used by the notebook are:
 
 ```text
 numpy
 pandas
 matplotlib
 yfinance
-tabulate
+jupyter
+ipykernel
 ```
 
 ### 8.3 Run the Notebook
 
-Open and run:
+Open and run the notebook:
 
 ```text
-notebooks/cross_asset_tsmom_research.ipynb
+cross-asset-tsmom-risk.ipynb
 ```
 
 The notebook will:
 
-1. Download ETF data from `yfinance`.
+1. Download adjusted ETF price data from `yfinance`.
 2. Construct the clean cross-asset ETF universe.
-3. Generate continuous multi-horizon TSMOM signals.
-4. Build volatility-scaled portfolios with asset and asset-class caps.
-5. Apply turnover controls and transaction costs.
-6. Run the backtest.
-7. Produce validation, stress-testing, and benchmark tables.
-8. Save figures to `figures/`.
-9. Save result tables to `tables/`.
+3. Generate continuous multi-horizon time-series momentum signals.
+4. Estimate ex-ante realised volatility.
+5. Build volatility-scaled portfolios with asset-level, asset-class, gross-leverage, and turnover controls.
+6. Apply base and stressed transaction-cost assumptions.
+7. Run the full backtest.
+8. Produce performance, validation, stress-testing, benchmark, sensitivity, and yearly-performance tables.
+9. Save figures to `figures/`.
+10. Save summary tables to `tables/tables/`.
+11. Save run-level outputs, including daily results and final weights, to `tables/reports/`.
 
 ### 8.4 Data Source Note
 
 The project uses `yfinance` for reproducibility and ease of access. Results may vary slightly if historical data are revised, adjusted, or unavailable at the time of download.
 
 This project is for research and educational purposes only. It is not investment advice and is not intended to represent a production trading system.
+
 
 ---
 
