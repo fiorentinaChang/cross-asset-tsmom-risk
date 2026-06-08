@@ -24,7 +24,7 @@ Although the test object is a systematic investment strategy, the project is fra
 
 ---
 
-## 3. Key Relevance to Risk
+## 3. Risk Management Relevance
 
 ### Market Risk
 
@@ -196,6 +196,8 @@ The Eurozone crisis result is roughly flat at **-0.24%**, while the banking stre
 
 Overall, the crisis results support a balanced interpretation: the strategy can provide useful diversification in some sustained stress regimes, but it can fail when the market shock is abrupt, discontinuous, and faster than the signal can adapt.
 
+---
+
 ## 5. Main Figures
 
 The figures in this repository support the main risk and validation arguments. To keep the README concise for interviewers, the main section focuses on five headline figures: benchmark NAV, drawdown, crisis returns, parameter stability, and transaction-cost sensitivity. Additional diagnostics are listed separately and saved in the `figures/` folder.
@@ -272,6 +274,7 @@ The following figures are included in the repository as supporting diagnostics. 
 | Portfolio volatility sensitivity    | `figures/volatility-sensitivity.png`              | Tests whether the selected 12% portfolio volatility target is a single-parameter artefact.       |
 | Target asset volatility sensitivity | `figures/target-asset-volatility-sensitivity.png` | Tests whether the selected 6% target asset volatility assumption is a single-parameter artefact. |
 
+---
 
 ## 6. Methodology
 
@@ -420,6 +423,7 @@ The main observed failure modes are:
 These weaknesses are not hidden from the analysis. They are part of the risk interpretation of the model.
 
 ---
+
 ## 8. Repository Structure
 
 ```text
